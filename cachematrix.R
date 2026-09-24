@@ -25,6 +25,7 @@ makeCacheMatrix <- function(x = matrix()) {
   getinverse <- function() m
   
   # Returns list of all functions
+  ## Question : should I camelCase the function names?
   list( set = set, get = get, setinverse = setinverse, getinverse = getinverse )
 }
 
@@ -39,13 +40,16 @@ cacheSolve <- function(x, ...)
 
   ## Check if the inverse is already cached
   m <- x$getinverse()
+  ## if it is not null
   if(!is.null(m))
   {
     ## Return the cached inverse
     message("getting cached data")
     return(m)
   }
+  ## Get the matrix from the input object data
   data <- x$get()
+  ## Solve calculates the inverse of the matrix
   m <- solve(data, ...)
   x$setinverse(m)
   m
